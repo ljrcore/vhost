@@ -125,7 +125,6 @@ impl Master {
                 Err(e) => match &e {
                     VhostUserError::SocketConnect(why) => {
                         if why.kind() == std::io::ErrorKind::ConnectionRefused && retry_count > 0 {
-                            std::thread::sleep(std::time::Duration::from_millis(1));
                             retry_count -= 1;
                             continue;
                         } else {
